@@ -26,26 +26,8 @@ pipeline {
                  docker.withRegistry('https://acr8983.azurecr.io', 'ACR_ID') {
                  customImage.push("${env.BUILD_NUMBER}")
                  }                     
-        }
-		}
-		}
-        
-        stage("SSH Into k8s Server") {
-			def remote = [:]
-			remote.name = 'AKS'
-			remote.host = '13.70.7.113'
-			remote.user = 'jenkins'
-			remote.password = 'Ajinkya@8983A'
-			remote.allowAnyHosts = true
-
-            stage('Put k8s-deployment.yaml onto AKS') {
-				sshPut remote: remote, from: 'k8s-deployment.yaml', into: '.'
-        }
-
-			stage('Deploy spring boot') {
-				sshCommand remote: remote, command: "kubectl apply -f k8s-deployment.yaml"
-        }
-    }
-
-   }
-}
+           }
+		   }
+		   }
+		   }
+		   }
