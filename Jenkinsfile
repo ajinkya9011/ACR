@@ -31,19 +31,19 @@ pipeline {
 		}
         
         stage("SSH Into k8s Server") {
-        def remote = [:]
-        remote.name = 'K8S master'
-        remote.host = '13.70.7.113'
-        remote.user = 'jenkins'
-        remote.password = 'Ajinkya@8983A'
-        remote.allowAnyHosts = true
+			def remote = [:]
+			remote.name = 'K8S master'
+			remote.host = '13.70.7.113'
+			remote.user = 'jenkins'
+			remote.password = 'Ajinkya@8983A'
+			remote.allowAnyHosts = true
 
-        stage('Put k8s-deployment.yaml onto AKS') {
-            sshPut remote: remote, from: 'k8s-deployment.yaml', into: '.'
+            stage('Put k8s-deployment.yaml onto AKS') {
+				sshPut remote: remote, from: 'k8s-deployment.yaml', into: '.'
         }
 
-        stage('Deploy spring boot') {
-          sshCommand remote: remote, command: "kubectl apply -f k8s-deployment.yaml"
+			stage('Deploy spring boot') {
+				sshCommand remote: remote, command: "kubectl apply -f k8s-deployment.yaml"
         }
     }
 
