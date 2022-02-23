@@ -32,7 +32,7 @@ pipeline {
         
         stage("SSH Into k8s Server") {
 			def remote = [:]
-			remote.name = 'K8S master'
+			remote.name = 'AKS'
 			remote.host = '13.70.7.113'
 			remote.user = 'jenkins'
 			remote.password = 'Ajinkya@8983A'
